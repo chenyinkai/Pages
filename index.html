@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				background:black;
+				overflow:hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var scHei = document.documentElement.offsetHeight||document.body.offsetHeight;
+			var oBody = document.getElementsByTagName("body")[0];
+
+			document.onclick = function(e){
+				var e = e||window.event;
+				var x = e.clientX;
+				var endY = e.clientY;
+				var firework = new Firework(x,endY);
+			}
+			
+//			烟花对象
+			function Firework(x,endY){
+				this.x = x;
+				this.endY = endY;
+				this.createFirework();
+			}
+			Firework.prototype.createFirework = function(){
+				this.ele  = document.createElement("div");
+				this.ele.style.cssText = "position:absolute;left:"+this.x+"px;top:"+scHei+"px;width:5px;height:5px;background:white;";
+				oBody.appendChild(this.ele);
+				this.move();
+			}
+			Firework.prototype.move = function(){
+				var that = this;
+				move.moreAttrMoveBuffer(this.ele,{
+					"top":that.endY
+				},1000,function(){
+					oBody.removeChild(that.ele);
+					that.boom();
+				})
+			}
+			Firework.prototype.boom = function(){
+				var that = this;
+				this.pieceNum = oMath.getRan(30,60);
+				this.pieceArr = [];
+				for(var i=0;i<this.pieceNum;i++){
+					var pieces = document.createElement("div");
+					pieces.style.cssText = "position:absolute;left:"+this.x+"px;top:"+this.endY+"px;width:3px;height:3px;background:rgb("+oMath.getRan(0,255)+","+oMath.getRan(0,255)+","+oMath.getRan(0,255)+");"
+					oBody.appendChild(pieces);
+					this.pieceArr.push(pieces);
+				}
+//				心形线轨迹方程   t[0-2π]
+//				x = 16(sint)^3;
+//    			y = 13cost - 5cos2t - 2cos3t -cos4t;
+				
+				var perRad = 2*Math.PI/this.pieceNum;
+				var init = 1;
+				this.time = setInterval(function(){
+					init+=0.1;
+					if(init>=5){
+						clearInterval(that.time);
+						init = 5;
+						for(var i=0;i<that.pieceArr.length;i++){
+							oBody.removeChild(that.pieceArr[i]);
+						}
+					}
+					for(var i=0;i<that.pieceArr.length;i++){
+						var nowRad = perRad*i;
+						var x = 16*Math.pow(Math.sin(nowRad),3);
+						var y = 13*Math.cos(nowRad) - 5*Math.cos(2*nowRad) - 2*Math.cos(3*nowRad) - Math.cos(4*nowRad);
+						that.pieceArr[i].style.left = that.x + x*init + "px";
+						that.pieceArr[i].style.top = that.endY - y*init + "px";
+					}
+				},1000/60);
+			}
+		</script>
+	</body>
+</html>
