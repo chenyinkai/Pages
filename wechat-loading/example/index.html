@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wechat-loading</title>
+    <script type="text/javascript" src="../dist/wechatLoading.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <button id="show">show</button>
+    <button id="hide">hide</button>
+<script>
+    window.onload = function(){
+        var showBtn = document.getElementById('show');
+        var hideBtn = document.getElementById('hide');
+        showBtn.onclick = function(){
+            wechatLoading.show();
+        }
+        hideBtn.onclick = function(){
+            wechatLoading.hide();
+        }
+        //The most common situation is used in the data request when enter the page
+        wechatLoading.show();
+        axios.get('https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=&udid=')
+            .then(function (response) {
+                wechatLoading.hide();
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    
+</script>
+</body>
+</html>
