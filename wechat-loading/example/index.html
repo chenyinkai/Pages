@@ -5,32 +5,22 @@
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>wechat-loading</title>
+    <script type="text/javascript" src="../dist/wechatLoading.js"></script>
 </head>
 <body>
     <button id="show">show</button>
     <button id="hide">hide</button>
-    <script type="text/javascript" src="../dist/wechatLoading.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         window.onload = function(){
             var showBtn = document.getElementById('show');
             var hideBtn = document.getElementById('hide');
+            wechatLoading.show();
             showBtn.onclick = function(){
                 wechatLoading.show();
             }
             hideBtn.onclick = function(){
                 wechatLoading.hide();
             }
-            //The most common situation is used in the data request when enter the page
-            wechatLoading.show();
-            axios.get('./city.json')
-                .then(function (response) {
-                    wechatLoading.hide();
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
         }
     </script>
 </body>
