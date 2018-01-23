@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise对象示例</title>
+</head>
+<body>
+    <script>
+        //基本概念
+        const promise = new Promise((resolve, reject) => {
+            //some asynchronous  code
+            setTimeout(() => {
+                console.log('执行完成');
+                resolve('some data');
+            }, 2000);
+        });
+
+        promise.then((data) => {
+            console.log(data);
+        })
+
+        function runAsync() {
+            return new Promise((resolve, reject) => {
+                //some asynchronous  code
+                setTimeout(() => {
+                    console.log('执行完成');
+                    resolve('some data');
+                }, 2000);
+            });
+        }
+        runAsync().then((data) => {
+            console.log(data);
+        })
+
+        //catch的用法
+        function paramTest(){
+            return new Promise((resolve, reject) => {
+                let number = Math.ceil(Math.random() * 10);
+                if (number < 5) {
+                    resolve(number);
+                }else{
+                    reject('out of range');
+                }
+            })
+        }
+        // paramTest().then((number) => {
+        //     console.log('resolved');
+        //     console.log(number);
+        // },(reason) => {
+        //     console.log('rejected');
+        //     console.log(reason);
+        // })
+        paramTest().then((number) => {
+            console.log('resolved');
+            console.log(number);
+            console.log(data); //data为未定义
+        },(reason) => {
+            console.log('rejected');
+            console.log(reason);
+        }).catch((err) => {
+            console.log(err);
+        })
+
+        //all的用法
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('p1');
+            }, 1000);
+        })
+        .then(result => result)
+        .catch(e => e);
+
+        const p2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('p2');
+            }, 1000);
+        })
+        .then(result => result)
+        .catch(e => e);
+
+        Promise.all([p1, p2])
+        .then(result => console.log(result))
+        .catch(e => console.log(e));
+        ['p1', 'p2']
+
+        //race的用法
+        const p3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('p3');
+            }, 1000);
+        })
+        .then(result => result)
+        .catch(e => e);
+
+        const p4 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('p4');
+            }, 3000);
+        })
+        .then(result => result)
+        .catch(e => e);
+
+        Promise.race([p3, p4])
+        .then(result => console.log(result))
+        .catch(e => console.log(e));
+    </script>   
+</body>
+</html>
