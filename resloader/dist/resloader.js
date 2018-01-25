@@ -1,5 +1,5 @@
 /*!
- * A image preloaded plugin and can display the loaded image progress bar
+ * A image preload plugin and can display the loaded image progress bar
  * v1.0.0 ©2018 chenyinkai <chenyinkai0223@gmail.com>
  * https://github.com/chenyinkai/resloader#readme
  */
