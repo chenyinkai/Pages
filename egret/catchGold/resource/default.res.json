@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,description_json,1_png,2_png,9_png,1356a0713ac0df4_jpg,again_png,back_png,bg_png,dabian_png,help_png,help1_png,lanzi_png,man_png,paihang_png,rank_png,red1_png,red2_png,return_png,rule_png,rules_png,star_jpg,start_png,title_png,tru_jpg,true_jpg,true1_jpg",
+			"keys": "bg_jpg,egret_icon_png,description_json,bg_png,dabian_png,help_png,help1_png,lanzi_png,man_png,paihang_png,rank_png,red1_png,red2_png,return_png,rule_png,rules_png,star_jpg,start_png,title_png,tru_jpg,true_jpg,true1_jpg,1_png,2_png,9_png,1356a0713ac0df4_jpg,again_png,back_png",
 			"name": "preload"
 		}
 	],
@@ -20,36 +20,6 @@
 			"name": "description_json",
 			"type": "json",
 			"url": "config/description.json"
-		},
-		{
-			"name": "1_png",
-			"type": "image",
-			"url": "assets/1.png"
-		},
-		{
-			"name": "2_png",
-			"type": "image",
-			"url": "assets/2.png"
-		},
-		{
-			"name": "9_png",
-			"type": "image",
-			"url": "assets/9.png"
-		},
-		{
-			"name": "1356a0713ac0df4_jpg",
-			"type": "image",
-			"url": "assets/1356a0713ac0df4.jpg"
-		},
-		{
-			"name": "again_png",
-			"type": "image",
-			"url": "assets/again.png"
-		},
-		{
-			"name": "back_png",
-			"type": "image",
-			"url": "assets/back.png"
 		},
 		{
 			"name": "bg_png",
@@ -145,6 +115,36 @@
 			"name": "true1_jpg",
 			"type": "image",
 			"url": "assets/true1.jpg"
+		},
+		{
+			"name": "1_png",
+			"type": "image",
+			"url": "assets/1.png"
+		},
+		{
+			"name": "2_png",
+			"type": "image",
+			"url": "assets/2.png"
+		},
+		{
+			"name": "9_png",
+			"type": "image",
+			"url": "assets/9.png"
+		},
+		{
+			"name": "1356a0713ac0df4_jpg",
+			"type": "image",
+			"url": "assets/1356a0713ac0df4.jpg"
+		},
+		{
+			"name": "again_png",
+			"type": "image",
+			"url": "assets/again.png"
+		},
+		{
+			"name": "back_png",
+			"type": "image",
+			"url": "assets/back.png"
 		}
 	]
 }
